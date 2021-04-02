@@ -17,6 +17,7 @@ class CreateArticleModelsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->text('content');
+            $table->text('image')->nullable();
             $table->timestamps();
         });
     }

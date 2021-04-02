@@ -17,10 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin', 'AdminController@showImportanInfo')->middleware(['auth','role:admin']);
+Route::get('/admin', 'AdminController@showImportanInfo');
 
-Route::resource('/post', 'ArticleController')->middleware(['auth', 'role:admin']);
+Route::resource('/post', 'ArticleController');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => ['auth']], function(){
+    Route::resource('chats', 'ChatController');
+});

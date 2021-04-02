@@ -9,6 +9,11 @@ use App\Http\Requests\StoreArticleRequest;
 class ArticleController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware(['auth','role:user']);
+    }
+
     public function index()
     {
         $articles = ArticleModel::paginate(5);
